@@ -12,11 +12,12 @@ import java.net.URL;
 public class URLResponseChecker {
 	public static void main(String[] args) {
 		//String sitemap = "https://www.globalservices.bt.com/en/sitemap.xml";
-		String sitemap = args[0];
-		if(null == sitemap) {
+		if(args.length == 0) {
 			System.out.println("Please enter sitemap URL as argument.");
 			return;
 		}
+		System.out.println("************************ Sitemap URL scanning started. ****************************");
+		String sitemap = args[0];
 		try {
 			URL url = new URL(sitemap);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -49,5 +50,6 @@ public class URLResponseChecker {
 		} catch (Exception e) {
 			System.out.println("An error occurred while checking the URLs: " + e.getMessage());
 		}
+		System.out.println("************************ Sitemap URL scanning completed. ****************************");
 	}
 }
