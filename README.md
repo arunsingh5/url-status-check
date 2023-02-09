@@ -1,5 +1,5 @@
 # url-status-check
-This project check status of all urls present in sitemap page
+This project checks status of all urls present in sitemap page
 
 1. Install java 17 on your laptop.
 2. Download jar/url-status-check.jar file 
