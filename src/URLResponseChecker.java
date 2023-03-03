@@ -1,4 +1,6 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -22,6 +24,10 @@ public class URLResponseChecker {
 			URL url = new URL(sitemap);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
 			String line;
+			
+			FileWriter  urlListFile = new FileWriter ("URLStatusReport.csv");
+			BufferedWriter writer = new BufferedWriter(urlListFile);
+			
 			while ((line = reader.readLine()) != null) {
 				int startIndex = 0;
 				if (line.contains("<loc>")) {
@@ -39,14 +45,21 @@ public class URLResponseChecker {
 						int responseCode = connection.getResponseCode();
 						if (responseCode == 200) {
 							System.out.println(urlStr + " --> " + responseCode);
+							writer.write(urlStr + ","+ responseCode);
+							writer.write("\n");
+							writer.flush();
 						} else {
 							System.out.println("******************* Error Page **************************");
 							System.out.println(urlStr + " --> " + responseCode);
+							writer.write(urlStr + ","+ responseCode);
+							writer.write("\n");
+							writer.flush();
 							System.out.println("**********************************************************");
 						}
 					}
 				}
 			}
+			writer.close();
 		} catch (Exception e) {
 			System.out.println("An error occurred while checking the URLs: " + e.getMessage());
 		}
