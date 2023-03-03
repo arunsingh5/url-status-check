@@ -7,4 +7,4 @@ This project checks status of all urls present in sitemap page
 
 java -jar url-status-check.jar sitemapurl
 
-Ex: java -jar url-status-check.jar https://www.globalservices.bt.com/en/sitemap.xml
+Ex: java -jar url-status-check-jdk-<version>.jar https://www.globalservices.bt.com/en/sitemap.xml
